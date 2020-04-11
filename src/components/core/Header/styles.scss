@@ -1,0 +1,20 @@
+@import "../../../config/variables";
+
+#header {
+  height: $header-height;
+  width: 100%;
+  position: fixed;
+
+  .brand a {
+    color: black;
+
+    @media (min-width: 600px) {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+}

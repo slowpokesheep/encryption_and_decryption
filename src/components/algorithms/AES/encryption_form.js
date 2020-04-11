@@ -4,12 +4,15 @@ import Select from 'react-select';
 
 import { client } from '../../../App';
 import Output from '../../utils/Output';
+import ErrorMessage from '../../utils/ErrorMessage';
 import { modeOptions } from './shared';
 import Loader from '../../utils/Loader';
 
 export default function AESEncryptionForm(props) {
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState(null);
+  const [error, setError] = useState(null);
+
   const keyNode = useRef(null);
   const messageNode = useRef(null);
   const modeNode = useRef(null);
@@ -17,11 +20,20 @@ export default function AESEncryptionForm(props) {
   async function submitForm(e) {
     e.preventDefault();
     setLoading(true);
+    
     const key = keyNode.current ? keyNode.current.value : null;
     const message = messageNode.current ? messageNode.current.value : null;
     const mode = modeNode.current.state.value ? modeNode.current.state.value.value : null;
     const response = await client.post("aes/encrypt", { key, message, mode });
-    setOutput(response);
+    
+    if (response.ok) {
+      setOutput(response.data);
+      setError(null);
+    } else {
+      setOutput(null);
+      setError(response.data.message);
+    }
+
     setLoading(false);
   }
   
@@ -62,6 +74,7 @@ export default function AESEncryptionForm(props) {
         </Button>
       </Form>
       {output && <Output label="Encrypted message:" output={output} />}
+      {error && <ErrorMessage message={error} />}
     </>
   );
 }

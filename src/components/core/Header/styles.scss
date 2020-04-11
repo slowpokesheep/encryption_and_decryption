@@ -4,6 +4,7 @@
   height: $header-height;
   width: 100%;
   position: fixed;
+  z-index: 1000;
 
   .brand a {
     color: black;

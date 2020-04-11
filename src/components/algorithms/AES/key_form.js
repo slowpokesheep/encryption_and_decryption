@@ -6,11 +6,13 @@ import { client } from '../../../App';
 import Output from '../../utils/Output';
 import Loader from '../../utils/Loader';
 
-export default function AESKey(props) {
+export default function AESKeyForm(props) {
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState(null);
+  
   const keySizeNode = useRef(null);
   const passNode = useRef(null);
+  
   const keySizeOptions = [
     {label: "128", value: 128},
     {label: "192", value: 192},
@@ -23,7 +25,7 @@ export default function AESKey(props) {
     const key_size = keySizeNode.current ? keySizeNode.current.state.value.value : null;
     const passphrase = passNode.current ? passNode.current.value : null;
     const response = await client.post("key/aes", { key_size, passphrase });
-    setOutput(response);
+    setOutput(response.data);
     setLoading(false);
   }
 

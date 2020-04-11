@@ -11,7 +11,7 @@ export default function Description(props) {
   async function fetchDescription() {
     setLoading(true);
     const response = await client.get("description", [["algorithm", algorithm]]);
-    setTextArr(response);
+    setTextArr(response.data);
     setLoading(false);
   }
 

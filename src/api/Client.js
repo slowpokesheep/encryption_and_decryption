@@ -4,7 +4,7 @@ export default class Client {
       this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
     } else {
       this.apiUrl = 'http://127.0.0.1:5000/';
-      this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
+      // this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
     }
   }
 

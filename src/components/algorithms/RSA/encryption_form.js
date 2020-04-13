@@ -32,8 +32,6 @@ export default function RSAEncryptionForm(props) {
     const public_key = keyNode.current ? keyNode.current.value : null;
     const message = messageNode.current ? messageNode.current.value : null;
 
-    console.log(public_key)
-    console.log(public_key.replace(/\n/, '\\n'));
     const response = await client.post("rsa/encrypt", { public_key, message });
 
     let encrypted_message = "";

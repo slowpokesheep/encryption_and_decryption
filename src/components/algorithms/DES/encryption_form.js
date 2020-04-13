@@ -62,7 +62,6 @@ export default function DESEncryptionForm(props) {
 
     // mode - Encryption mode
     const nextMode = randomMode(modeOptions);
-    //setSelectMode(nextMode);
     modeNode.current.state.value = nextMode;
     modeNode.current.forceUpdate();
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Select from 'react-select';
 
@@ -20,14 +20,27 @@ export default function AESKeyForm(props) {
     {label: "256", value: 256},
   ];
 
+  useEffect(() => {
+    if (props.autoFillSubmit !== null) {
+      passNode.current.value = randomPassphrase();
+      submitForm(null);
+    }
+
+  }, [props.autoFillSubmit])
+
   async function submitForm(e) {
-    e.preventDefault();
+    if (e !== null) e.preventDefault();
     setLoading(true);
     const key_size = keySizeNode.current ? keySizeNode.current.state.value.value : null;
     const passphrase = passNode.current ? passNode.current.value : null;
     const response = await client.post("key/aes", { key_size, passphrase });
     setOutput(response.data);
     setLoading(false);
+
+    props.setKeyData({
+      key: response.data,
+    });
+    props.setKeySubmit(!props.keySubmit);
   }
 
   async function autoFillForm(e) {

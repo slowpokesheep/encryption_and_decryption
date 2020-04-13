@@ -18,7 +18,7 @@ export default function Home(props) {
           <NavImageBox backgroundUrl="/imagebox_2.jpg" text="DES" link="/des" />
         </Col>
         <Col xs="6">
-          <NavImageBox backgroundUrl="/imagebox_3.jpg" text="DES3" link="/des3" />
+          <NavImageBox backgroundUrl="/imagebox_3.jpg" text="3DES" link="/3des" />
         </Col>
         <Col xs="6">
           <NavImageBox backgroundUrl="/imagebox_4.jpg" text="RSA" link="/rsa" />

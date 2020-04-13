@@ -13,7 +13,8 @@ export default function DESPage() {
 
   return (
     <Base>
-      <Description algorithm="des" />
+      <Description subject="des" />
+      <Description subject="desImplementation" />
       <Row>
         <Col xs="12" lg="6" className="mt-5">
           <h2>DES Encryption</h2>

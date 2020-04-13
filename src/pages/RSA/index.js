@@ -17,12 +17,12 @@ export default function RSAPage() {
 
   return (
     <Base>
-      <Description algorithm="rsa" />
+      <Description subject="rsa" />
       <h2 className="mt-5">Key Generation</h2>
       <RSAKeyForm
         keySubmit={keySubmit}
-        autoFillSubmit={autoFillSubmit}
         setKeySubmit={setKeySubmit}
+        autoFillSubmit={autoFillSubmit}
         setKeyData={setKeyData}
       />
       <Row>

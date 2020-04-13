@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Select from 'react-select';
 
@@ -16,6 +16,24 @@ export default function AESDecryptionForm(props) {
   const keyNode = useRef(null);
   const messageNode = useRef(null);
   const modeNode = useRef(null);
+
+  useEffect(() => {
+    if (props.encryptionSubmit !== null) {
+      const { encrypted_message, mode } = props.encryptionData;
+      messageNode.current.value = encrypted_message;
+      modeNode.current.state.value = { label: mode, value: mode };
+      modeNode.current.forceUpdate();
+    }
+
+  }, [props.encryptionSubmit])
+
+  useEffect(() => {
+    if (props.keySubmit !== null) {
+      const { key } = props.keyData
+      keyNode.current.value = key;
+    }
+
+  }, [props.keySubmit])
 
   async function submitForm(e) {
     e.preventDefault();

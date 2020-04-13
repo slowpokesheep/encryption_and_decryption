@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Select from 'react-select';
 
 import { client } from '../../../App';
 import Output from '../../utils/Output';
+import { randomMode, randomWord, randomChars } from '../../../utils/random';
 import ErrorMessage from '../../utils/ErrorMessage';
 import { modeOptions } from './shared';
 import Loader from '../../utils/Loader';
@@ -17,6 +18,14 @@ export default function AESEncryptionForm(props) {
   const messageNode = useRef(null);
   const modeNode = useRef(null);
 
+  useEffect(() => {
+    if (props.keySubmit !== null) {
+      const { key } = props.keyData
+      keyNode.current.value = key;
+    }
+
+  }, [props.keySubmit])
+
   async function submitForm(e) {
     e.preventDefault();
     setLoading(true);
@@ -26,8 +35,11 @@ export default function AESEncryptionForm(props) {
     const mode = modeNode.current.state.value ? modeNode.current.state.value.value : null;
     const response = await client.post("aes/encrypt", { key, message, mode });
     
+    let encrypted_message = "";
+
     if (response.ok) {
       setOutput(response.data);
+      encrypted_message = response.data;
       setError(null);
     } else {
       setOutput(null);
@@ -35,12 +47,31 @@ export default function AESEncryptionForm(props) {
     }
 
     setLoading(false);
+    props.setEncryptionData({
+      encrypted_message,
+      mode,
+    });
+    props.setEncryptionSubmit(!props.encryptionSubmit);
+  }
+
+  async function autoFillForm(e) {
+    e.preventDefault()
+
+    // message - message to encrypt
+    messageNode.current.value = randomWord();
+
+    // mode - Encryption mode
+    const nextMode = randomMode(modeOptions);
+    modeNode.current.state.value = nextMode;
+    modeNode.current.forceUpdate();
+
+    props.setAutoFillSubmit(!props.autoFillSubmit);
   }
   
   return (
     <>
       {loading && <Loader />}
-      <Form onSubmit={submitForm}>
+      <Form>
         <Form.Group controlId="key">
           <Form.Label>Key:</Form.Label>
           <Form.Control
@@ -69,8 +100,11 @@ export default function AESEncryptionForm(props) {
             ref={modeNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
+        <Button variant="primary" type="submit" onClick={submitForm}>
+          Generate a new key
+        </Button>
+        <Button variant="secondary" type="submit" onClick={autoFillForm}>
+          Auto Fill
         </Button>
       </Form>
       {output && <Output label="Encrypted message:" output={output} />}

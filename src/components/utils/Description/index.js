@@ -4,13 +4,13 @@ import { client } from '../../../App';
 import Loader from '../Loader';
 
 export default function Description(props) {
-  const { algorithm } = props;
+  const { subject } = props;
   const [textArr, setTextArr] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchDescription() {
     setLoading(true);
-    const response = await client.get("description", [["algorithm", algorithm]]);
+    const response = await client.get("description", [["subject", subject]]);
     setTextArr(response.data);
     setLoading(false);
   }
@@ -18,7 +18,6 @@ export default function Description(props) {
   useEffect(() => {
     fetchDescription();
   }, []);
- 
 
   return (
     <>

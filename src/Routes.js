@@ -6,6 +6,7 @@ import AESPage from './pages/AES';
 import DESPage from './pages/DES';
 import DES3Page from './pages/DES3';
 import RSAPage from './pages/RSA';
+import About from './pages/about';
 
 export default function Routes(props) {
   return (
@@ -14,8 +15,9 @@ export default function Routes(props) {
         <Route exact path='/' component={Home} />
         <Route exact path='/aes' component={AESPage} />
         <Route exact path='/des' component={DESPage} />
-        <Route exact path='/des3' component={DES3Page} />
+        <Route exact path='/3des' component={DES3Page} />
         <Route exact path='/rsa' component={RSAPage} />
+        <Route exact path='/about' component={About} />
       </Switch>
     </Router>
   )

@@ -9,6 +9,14 @@ const wordList = [
   'Goodbye',
   'I like encryption',
   `Yarrr I'am a pirate`,
+  'RSA is on of the first public-key cryptosystems',
+  'This message is private',
+  'Block ciphers',
+  'Stream ciphers',
+  'Asymmetric cipher',
+  'So much fun encrypting',
+  'More and more encryption',
+  'This is just a random message',
 ]
 
 export const randomWord = () => {
@@ -35,6 +43,16 @@ const passphraseList = [
   'tabletennis',
   'correctbatterystablehorse',
   'yoga',
+  'Blowfish',
+  'Bcrypt',
+  'Hashcat',
+  'verygoodpassphrase',
+  'passablepassphrase',
+  'upanddowninandout',
+  'zeus',
+  'windowman',
+  'ronald',
+  'grassisgreenand'
 ]
 
 export const randomPassphrase = () => {

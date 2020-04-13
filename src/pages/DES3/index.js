@@ -13,10 +13,10 @@ export default function DES3Page() {
 
   return (
     <Base>
-      <Description algorithm="des3" />
+      <Description subject="des3" />
       <Row>
         <Col xs="12" lg="6" className="mt-5">
-          <h2>DES3 Encryption</h2>
+          <h2>3DES Encryption</h2>
           <DES3EncryptionForm
             encryptionSubmit={encryptionSubmit}
             setEncryptionSubmit={setEncryptionSubmit}
@@ -24,7 +24,7 @@ export default function DES3Page() {
           />
         </Col>
         <Col xs="12" lg="6" className="mt-5">
-          <h2>DES3 Decryption</h2>
+          <h2>3DES Decryption</h2>
           <DES3DecryptionForm
             encryptionSubmit={encryptionSubmit}
             encryptionData={encryptionData}

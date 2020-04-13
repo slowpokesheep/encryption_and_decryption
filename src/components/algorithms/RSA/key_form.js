@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Select from 'react-select';
 
@@ -7,33 +7,40 @@ import { randomPassphrase } from '../../../utils/random';
 import Output from '../../utils/Output';
 import Loader from '../../utils/Loader';
 
-export default function AESKeyForm(props) {
+export default function RSAKeyForm(props) {
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState(null);
   
   const keySizeNode = useRef(null);
-  const passNode = useRef(null);
   
   const keySizeOptions = [
-    {label: "128", value: 128},
-    {label: "192", value: 192},
-    {label: "256", value: 256},
+    {label: "1024", value: 1024},
+    {label: "2048", value: 2048},
+    {label: "3072", value: 3072},
   ];
 
+  useEffect(() => {
+    if (props.autoFillSubmit !== null) {
+      submitForm(null);
+    }
+
+  }, [props.autoFillSubmit])
+
   async function submitForm(e) {
-    e.preventDefault();
+    if (e !== null) e.preventDefault();
     setLoading(true);
     const key_size = keySizeNode.current ? keySizeNode.current.state.value.value : null;
-    const passphrase = passNode.current ? passNode.current.value : null;
-    const response = await client.post("key/aes", { key_size, passphrase });
+    const response = await client.post("key/rsa", { key_size });
     setOutput(response.data);
     setLoading(false);
-  }
 
-  async function autoFillForm(e) {
-    e.preventDefault()
-    passNode.current.value = randomPassphrase();
-    submitForm(e);
+    const { public_key, private_key } = response.data;
+
+    props.setKeyData({
+      public_key: public_key.replace(/\n/g, '\\n'),
+      private_key: private_key.replace(/\n/g, '\\n'),
+    });
+    props.setKeySubmit(!props.keySubmit);
   }
 
   return (
@@ -44,29 +51,18 @@ export default function AESKeyForm(props) {
           <Form.Label>Key Size:</Form.Label>
           <Select
             options={keySizeOptions}
-            defaultValue={keySizeOptions[2]}
+            defaultValue={keySizeOptions[0]}
             isMulti={false}
             placeholder="Choose a key size (in bits)"
             ref={keySizeNode}
           />
         </Form.Group>
-        <Form.Group controlId="passphrase">
-          <Form.Label>Passphrase:</Form.Label>
-          <Form.Control
-            type="text"
-            required={true}
-            placeholder="Enter a passphrase"
-            ref={passNode}
-          />
-        </Form.Group>
         <Button variant="primary" type="submit" onClick={submitForm}>
           Generate a new key
         </Button>
-        <Button variant="secondary" type="submit" onClick={autoFillForm}>
-          Auto Fill
-        </Button>
       </Form>
-      {output && <Output label="Your key:" output={output} />}
+      {output && <Output label="Your key:" output={output.private_key.replace(/\n/g, '\\n')} />}
+      {output && <Output label="Your key:" output={output.public_key.replace(/\n/g, '\\n')} />}
     </>
   )
 }

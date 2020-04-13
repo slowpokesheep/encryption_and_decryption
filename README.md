@@ -2,7 +2,7 @@
 ## Information
 
 **Backend**
-* [Heroku](https://api-enc-dec.herokuapp.com/)
+* [Heroku](https://enc-dec-api.herokuapp.com/)
 * [Github](https://github.com/nachos5/encryption_and_decryption_api)
 
 

@@ -1,10 +1,10 @@
 export default class Client {
   constructor() {
-    if (process.env.PRODUCTION === 'true') {
+    if (process.env.REACT_APP_PRODUCTION === 'true') {
       this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
     } else {
-      //this.apiUrl = 'http://127.0.0.1:5000/';
-      this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
+      this.apiUrl = 'http://127.0.0.1:5000/';
+      // this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
     }
   }
 

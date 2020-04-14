@@ -1,7 +1,15 @@
 
 ## Information
 
-**Backend**
+Made by:
+
+* Guðmundur Óli Norland (nachos5 - gon2@hi.is)
+* Hjalti Geir Garðarsson (slowpokesheep - hgg29@hi.is)
+
+Click [here](https://enc-dec-react.herokuapp.com/) for a production example on Heroku
+(start up might be slow since this is runs on a free dyno).
+
+**API Backend**
 * [Heroku](https://enc-dec-api.herokuapp.com/)
 * [Github](https://github.com/nachos5/encryption_and_decryption_api)
 

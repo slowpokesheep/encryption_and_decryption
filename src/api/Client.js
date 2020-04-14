@@ -1,6 +1,6 @@
 export default class Client {
   constructor() {
-    if (process.env.REACT_APP_PRODUCTION === 'true') {
+    if (process.env.NODE_ENV === 'production') {
       this.apiUrl = 'http://enc-dec-api.herokuapp.com/';
     } else {
       this.apiUrl = 'http://127.0.0.1:5000/';

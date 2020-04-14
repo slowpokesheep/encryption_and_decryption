@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { client } from '../../../App';
 import Loader from '../Loader';
 
+import './styles.scss';
+
 export default function Description(props) {
   const { subject } = props;
   const [textArr, setTextArr] = useState([]);
@@ -20,13 +22,13 @@ export default function Description(props) {
   }, []);
 
   return (
-    <>
+    <div className="description-block">
       {loading && <Loader />}
       {textArr.map((text, i) => {
         return (
           <p key={i}>{text}</p>
         );
       })}
-    </>
+    </div>
   );
 }

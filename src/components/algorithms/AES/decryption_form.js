@@ -87,9 +87,11 @@ export default function AESDecryptionForm(props) {
             ref={modeNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="d-flex justify-content-end">
+          <Button variant="primary" type="submit">
+            Decrypt
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Decrypted message:" output={output} />}
       {error && <ErrorMessage message={error} />}

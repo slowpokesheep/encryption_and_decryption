@@ -57,9 +57,11 @@ export default function RSAKeyForm(props) {
             ref={keySizeNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Generate a new key
-        </Button>
+        <div className="d-flex justify-content-end">
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Generate a new key
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Your key:" output={output.private_key.replace(/\n/g, '\\n')} />}
       {output && <Output label="Your key:" output={output.public_key.replace(/\n/g, '\\n')} />}

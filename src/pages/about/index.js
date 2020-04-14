@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import React from 'react';
 
 import Base from '../../components/core/Base';
 import Description from '../../components/utils/Description';
+
+import './styles.scss';
 
 export default function About() {
 
@@ -47,35 +48,39 @@ export default function About() {
 
   return (
     <Base>
-      <h3>IV (Initalization vector)</h3>
+      <h2 className="about-header">About this project</h2>
+      <p>Made by Guðmundur Óli Norland (<a href="https://github.com/nachos5" target="_blank" rel="noopener noreferrer">nachos5 on Github</a>) and Hjalti Geir Garðarsson (<a href="https://github.com/slowpokesheep" target="_blank" rel="noopener noreferrer">slowpokesheep on Github</a>).</p>
+      <p><a href="https://github.com/nachos5/encryption_and_decryption_api" target="_blank" rel="noopener noreferrer">Click here</a> to visit the projects repository on Github.</p>
+      <p><a href="https://github.com/nachos5/encryption_and_decryption_api" target="_blank" rel="noopener noreferrer">Click here</a> to visit this projects API repository on Github.</p>
+      <h2 className="about-header mt-5">Information (glossary)</h2>
+      <p className="about-small-header">IV (Initalization vector)</p>
       <Description subject="iv" />
-      <h2>Block cipher mode of operation</h2>
+      <div className="mb-5" />
+      <h3>Block cipher mode of operation</h3>
       <Description subject="mode" />
-      <h3>ECB (Electronic codebook)</h3>
+      <p className="about-small-header">ECB (Electronic codebook)</p>
       <Description subject="ecb" />
-      <h3>CBC (Cipher block chaining)</h3>
+      <p className="about-small-header">CBC (Cipher block chaining)</p>
       <Description subject="cbc" />
-      <h3>CFB (Cipher feedback)</h3>
+      <p className="about-small-header">CFB (Cipher feedback)</p>
       <Description subject="cfb" />
-      <h3>OFB (Output feedback)</h3>
+      <p className="about-small-header">OFB (Output feedback)</p>
       <Description subject="ofb" />
-      <h3>CTR (Counter)</h3>
+      <p className="about-small-header">CTR (Counter)</p>
       <Description subject="ctr" />
 
-      <h2>About the project</h2>
-      <h3>Backend</h3>
-      <>
+      <h2 className="about-header">Documentation</h2>
+      <div className="mb-5">
         {aboutText.map((text, i) => {
           return (
-          <p key={i}>{text} <a href={aboutLinks[i]}>{aboutLinks[i]}</a></p>
+          <p key={i}>{text} <a className="doc-link" href={aboutLinks[i]}>{aboutLinks[i]}</a></p>
           );
         })}
-      </>
-      <h3>Information</h3>
+      </div>
       <>
         {resourcesText.map((text, i) => {
           return (
-          <p key={i}>{text} <a href={resourcesLinks[i]}>{resourcesLinks[i]}</a></p>
+          <p key={i}>{text} <a className="doc-link" href={resourcesLinks[i]}>{resourcesLinks[i]}</a></p>
           );
         })}
       </>

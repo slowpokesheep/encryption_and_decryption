@@ -100,12 +100,14 @@ export default function AESEncryptionForm(props) {
             ref={modeNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Generate a new key
-        </Button>
-        <Button variant="secondary" type="submit" onClick={autoFillForm}>
-          Auto Fill
-        </Button>
+        <div className="d-flex justify-content-between">
+          <Button variant="info" type="submit" onClick={autoFillForm}>
+            Auto Fill
+          </Button>
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Encrypt
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Encrypted message:" output={output} />}
       {error && <ErrorMessage message={error} />}

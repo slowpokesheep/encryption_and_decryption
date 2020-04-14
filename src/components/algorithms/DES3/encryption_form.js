@@ -141,12 +141,14 @@ export default function DES3EncryptionForm(props) {
             ref={ivNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Submit
-        </Button>
-        <Button variant="secondary" type="submit" onClick={autoFillForm}>
-          Auto Fill
-        </Button>
+        <div className="d-flex justify-content-between">
+          <Button variant="info" type="submit" onClick={autoFillForm}>
+            Auto Fill
+          </Button>
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Encrypt
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Encrypted message:" output={output.encrypted_message} />}
       {output && <Output label="Initalization Vector:" output={output.iv} />}

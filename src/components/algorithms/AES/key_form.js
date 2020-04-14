@@ -72,12 +72,14 @@ export default function AESKeyForm(props) {
             ref={passNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Generate a new key
-        </Button>
-        <Button variant="secondary" type="submit" onClick={autoFillForm}>
-          Auto Fill
-        </Button>
+        <div className="d-flex justify-content-between">
+          <Button variant="info" type="submit" onClick={autoFillForm}>
+            Auto Fill
+          </Button>
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Generate a new key
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Your key:" output={output} />}
     </>

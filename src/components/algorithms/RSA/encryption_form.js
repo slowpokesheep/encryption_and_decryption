@@ -83,12 +83,14 @@ export default function RSAEncryptionForm(props) {
             ref={messageNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Submit
-        </Button>
-        <Button variant="secondary" type="submit" onClick={autoFillForm}>
-          Auto Fill
-        </Button>
+        <div className="d-flex justify-content-between">
+          <Button variant="info" type="submit" onClick={autoFillForm}>
+            Auto Fill
+          </Button>
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Encrypt
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Encrypted message:" output={output.encrypted_message} />}
       {error && <ErrorMessage message={error} />}

@@ -74,9 +74,11 @@ export default function RSADecryptionForm(props) {
             ref={messageNode}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="d-flex justify-content-end">
+          <Button variant="primary" type="submit">
+            Decrypt
+          </Button>
+        </div>
       </Form>
       {output && <Output label="Decrypted message:" output={output.decrypted_message} />}
       {error && <ErrorMessage message={error} />}

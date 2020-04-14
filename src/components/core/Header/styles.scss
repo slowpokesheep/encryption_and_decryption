@@ -8,8 +8,17 @@
 
   .brand a {
     color: black;
+    width: 100%;
+
+    @media (max-width: 300px) {
+      font-size: 0.75rem;
+    }
 
     @media (min-width: 600px) {
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 800px) {
       font-size: 1.5rem;
     }
 
@@ -17,5 +26,10 @@
       color: $blue;
       text-decoration: none;
     }
+  }
+
+  span {
+    font-size: 1.5rem;
+    padding: 0 10px;
   }
 }
